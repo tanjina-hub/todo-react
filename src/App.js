@@ -14,13 +14,13 @@ function App() {
    if (storageTodos) {
      setTodos(storageTodos);
    }
-    }
+
   }, []);
 
   useEffect(() => {
     // fires when todos array gets updated
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
-    }
+    
   }, []);
 
   function addTodo(todo) {
