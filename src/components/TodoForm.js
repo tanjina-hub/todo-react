@@ -1,5 +1,6 @@
+import { Button, TextField } from "material-ui/core";
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from "uuid"; 
+import uuid from "uuid"; 
 
 function TodoForm ({ addTodo }) {
  const [todo, setTodo] = useState({
@@ -11,16 +12,16 @@ function TodoForm ({ addTodo }) {
  function handleTaskInputChange(e) {
      //e.target.value contains new input from onChange
      //event for input elements
-     setTodo({ ...todo, task: e.target.value});
+     setTodo({ ...todo, task: e.target.value });
  }
 
  function handleSubmit(e) {
      e.preventDefault(); //prevents browser refresh
      //trim() gets rid of string whitespace
      if (todo.task.trim()) {
-         addTodo({ ...todo, id: uuid.v4()});
+         addTodo({ ...todo, id: uuid.v4() });
          //reset task input
-         setTodo({ ...todo, task: ""});
+         setTodo({ ...todo, task: "" });
      }
  }
    

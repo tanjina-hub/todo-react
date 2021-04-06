@@ -1,3 +1,4 @@
+import Typography from "material-ui/core/Typography";
 import React, { useEffect, useState } from "react";
 import './App.css';
 import TodoForm from "./components/TodoForm";
@@ -10,7 +11,7 @@ function App() {
 
   useEffect(() => {
      // fires when app component mounts to the DOM
-   const storageTodos = Json.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+   const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
    if (storageTodos) {
      setTodos(storageTodos);
    }
@@ -28,6 +29,23 @@ function App() {
     setTodos([todo, ...todos]);
   }
 
+  function toggleComplete(id) {
+    setTodos(
+      todos.map(todo => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: !todo.completed
+          };
+        }
+        return todo;
+      })
+    );
+  }
+
+  function removeTodo(id) {
+    setTodos(todos.filter(todo => todo.id !==id ));
+  }
 
  return (
     <div className="App">
@@ -37,7 +55,8 @@ function App() {
       <TodoForm addTodo={addTodo} />
       <TodoList
         todos={todos}
-        
+        removeTodo={removeTodo}
+        toggleComplete={toggleComplete}
       />
     </div>
   );
